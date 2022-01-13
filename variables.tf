@@ -9,9 +9,22 @@ variable location {
   description = "The Azure Region in which the Resource Group exists"
 }
 
+# Active Directory & Domain Controller VM Size
+variable vmsize_dc {
+  description = "The Virtual Machine name that you wish to join to the domain"
+}
+
 # Active Directory & Domain Controller
 variable vmname_dc {
   description = "The Virtual Machine name that you wish to join to the domain"
+}
+
+variable "vm_username" {
+  description = "The username of an account with permissions to bind machines to the Active Directory Domain"
+}
+
+variable "vm_password" {
+  description = "The username of an account with permissions to bind machines to the Active Directory Domain"
 }
 
 variable "active_directory_domain" {
