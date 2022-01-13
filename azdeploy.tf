@@ -14,7 +14,7 @@ resource "azurerm_virtual_network" "myTerra-vnet" {
   depends_on          = [var.resource_group_name]
   location            = var.location
   resource_group_name = var.resource_group_name
-  address_space       = ["10.10.1.0/16"]
+  address_space       = ["10.10.0.0/16"]
   dns_servers         = ["10.10.1.4", "168.63.129.16", "8.8.8.8"]
   tags = {
     Environment = var.environment_tag
@@ -34,6 +34,7 @@ resource "azurerm_public_ip" "myTerraDC-pip" {
   resource_group_name = var.resource_group_name
   location            = var.location
   allocation_method   = "Static"
+  availability_zone   = "No-Zone"
   sku                 = "Standard"
 
   tags = {
