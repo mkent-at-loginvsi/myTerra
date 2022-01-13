@@ -1,7 +1,7 @@
 #Resource Group
 resource "azurerm_resource_group" "rg" {
-  name     = var.azure-rg
-  location = var.loc
+  name     = var.resource_group_name
+  location = var.location
   tags = {
     Environment = var.environment_tag
     Function    = "lab-resourcegroups"
