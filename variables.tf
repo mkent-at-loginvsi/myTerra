@@ -6,7 +6,7 @@ variable location {
 }
 
 # Active Directory & Domain Controller
-variable vmname {
+variable vmname_dc {
   description = "The Virtual Machine name that you wish to join to the domain"
 }
 
