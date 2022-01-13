@@ -44,7 +44,7 @@ resource "azurerm_public_ip" "myTerraDC-pip" {
 #Create NIC and associate the Public IP
 resource "azurerm_network_interface" "myTerraDC-nic" {
   name                = "myTerraDC-nic"
-  depends_on          = [azurerm_resource_group.name]
+  depends_on          = [var.resource_group_name]
   location            = var.location
   resource_group_name = var.resource_group_name
 
