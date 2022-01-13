@@ -80,7 +80,6 @@ resource "azurerm_managed_disk" "myTerraDC-data" {
 
 resource "azurerm_windows_virtual_machine" "myTerraDC" {
   name                = "myTerraDC"
-  depends_on          = [azurerm_resource_group.name]
   depends_on          = [var.active_directory_domain]
   resource_group_name = var.resource_group_name
   location            = var.location
