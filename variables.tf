@@ -1,3 +1,7 @@
+variable "environment_tag" {
+  type        = string
+  description = "Environment tag value"
+}
 variable resource_group_name {
   description = "The name of the Resource Group where the VM is"
 }
