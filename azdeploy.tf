@@ -7,9 +7,11 @@ resource "azurerm_resource_group" "rg" {
     Function    = "lab-resourcegroups"
   }
 }
+
 #Create Domain Controller VM
 resource "azurerm_virtual_network" "myTerra-vnet" {
   name                = "myTerra-vnet"
+  depends_on          = [azurerm_resource_group.name]
   location            = var.location
   resource_group_name = var.resource_group_name
   address_space       = ["10.10.1.0/16"]
@@ -21,6 +23,7 @@ resource "azurerm_virtual_network" "myTerra-vnet" {
 }
 resource "azurerm_subnet" "myTerra-vnet-snet1" {
   name                 = "myTerra-vnet-snet1"
+  depends_on          = [azurerm_resource_group.name]
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.myTerra-vnet.name
   address_prefixes     = ["10.10.1.0/24"]
@@ -41,6 +44,7 @@ resource "azurerm_public_ip" "myTerraDC-pip" {
 #Create NIC and associate the Public IP
 resource "azurerm_network_interface" "myTerraDC-nic" {
   name                = "myTerraDC-nic"
+  depends_on          = [azurerm_resource_group.name]
   location            = var.location
   resource_group_name = var.resource_group_name
 
@@ -60,6 +64,7 @@ resource "azurerm_network_interface" "myTerraDC-nic" {
 #Create data disk for NTDS storage
 resource "azurerm_managed_disk" "myTerraDC-data" {
   name                 = "myTerraDC-data"
+  depends_on          = [azurerm_resource_group.name]
   location             = var.location
   resource_group_name  = var.resource_group_name
   storage_account_type = "StandardSSD_LRS"
@@ -75,6 +80,7 @@ resource "azurerm_managed_disk" "myTerraDC-data" {
 
 resource "azurerm_windows_virtual_machine" "myTerraDC" {
   name                = "myTerraDC"
+  depends_on          = [azurerm_resource_group.name]
   depends_on          = [var.active_directory_domain]
   resource_group_name = var.resource_group_name
   location            = var.location
