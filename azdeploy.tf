@@ -11,7 +11,7 @@ resource "azurerm_resource_group" "rg" {
 #Create Domain Controller VM
 resource "azurerm_virtual_network" "myTerra-vnet" {
   name                = "myTerra-vnet"
-  depends_on          = [azurerm_resource_group.name]
+  depends_on          = [rg.name]
   location            = var.location
   resource_group_name = var.resource_group_name
   address_space       = ["10.10.1.0/16"]
