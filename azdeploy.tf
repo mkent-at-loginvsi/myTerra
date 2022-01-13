@@ -23,7 +23,7 @@ resource "azurerm_virtual_network" "myTerra-vnet" {
 }
 resource "azurerm_subnet" "myTerra-vnet-snet1" {
   name                 = "myTerra-vnet-snet1"
-  depends_on          = [azurerm_resource_group.name]
+  depends_on           = [var.resource_group_name]
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.myTerra-vnet.name
   address_prefixes     = ["10.10.1.0/24"]
@@ -64,7 +64,7 @@ resource "azurerm_network_interface" "myTerraDC-nic" {
 #Create data disk for NTDS storage
 resource "azurerm_managed_disk" "myTerraDC-data" {
   name                 = "myTerraDC-data"
-  depends_on          = [azurerm_resource_group.name]
+  depends_on           = [var.resource_group_name]
   location             = var.location
   resource_group_name  = var.resource_group_name
   storage_account_type = "StandardSSD_LRS"
